@@ -1,4 +1,3 @@
-// server/routes/weather.js
 const express = require('express');
 const { apiKey } = require('../config/env');
 
@@ -9,8 +8,7 @@ router.get('/weather', async (req, res) => {
     if (!city) {
         return res.status(400).json({ error: 'City name is required' });
     }
-
-    // Dynamic import of node-fetch
+    
     const fetch = await import('node-fetch').then(mod => mod.default);
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;

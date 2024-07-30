@@ -32,7 +32,7 @@ input[type="text"] {
     border-radius: 4px;
     outline: none;
     margin-bottom: 10px;
-    width: calc(100% - 22px); /* Adjust width to avoid overflow */
+    width: calc(100% - 22px);
 }
 
 select {
@@ -41,7 +41,7 @@ select {
     border-radius: 4px;
     outline: none;
     margin-bottom: 10px;
-    width: 100%; /* Ensure the select element uses full width */
+    width: 100%; 
 }
 
 button[type="submit"] {
@@ -51,8 +51,8 @@ button[type="submit"] {
     color: white;
     cursor: pointer;
     border-radius: 4px;
-    width: 100%; /* Ensure the button uses full width */
-    box-sizing: border-box; /* Include padding in width calculation */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button[type="submit"]:hover {

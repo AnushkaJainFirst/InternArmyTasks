@@ -67,7 +67,7 @@ const startScreen = document.getElementById('start-screen');
 function startQuiz() {
     startScreen.classList.add('hidden');
     quizContainer.classList.remove('hidden');
-    restartQuiz(); // Initialize the quiz with shuffled questions
+    restartQuiz();
 }
 
 function loadQuestion() {
@@ -90,7 +90,6 @@ function selectAnswer(index) {
         score++;
     }
 
-    // Disable all buttons after answering
     choicesElements.forEach(button => button.disabled = true);
 
     nextButton.classList.remove('hidden');
@@ -115,9 +114,14 @@ function showResult() {
 function restartQuiz() {
     score = 0;
     currentQuestionIndex = 0;
-    shuffledQuizData = shuffleArray([...quizData]); // Shuffle the questions
+    shuffledQuizData = shuffleArray([...quizData]);
+    resultContainer.classList.add('hidden');
+    quizContainer.classList.remove('hidden');
     loadQuestion();
-    choicesElements.forEach(button => button.disabled = false);
+    choicesElements.forEach(button => {
+        button.disabled = false;
+        button.classList.remove('correct', 'incorrect');
+    });
 }
 
 function shuffleArray(array) {
@@ -128,14 +132,13 @@ function shuffleArray(array) {
     return array;
 }
 
-// Event listener to detect clicks outside the quiz area
 document.addEventListener('click', function (event) {
     const isClickInsideQuiz = quizContainer.contains(event.target) || startScreen.contains(event.target) || resultContainer.contains(event.target);
-    if (!isClickInsideQuiz && !quizContainer.classList.contains('hidden')) {
+    if (!isClickInsideQuiz && !quizContainer.classList.contains('hidden') && resultContainer.classList.contains('hidden')) {
         alert('Please complete the quiz before clicking outside!');
     }
 });
 
-// Initialize with start screen visible
 quizContainer.classList.add('hidden');
 resultContainer.classList.add('hidden');
+startScreen.classList.remove('hidden');
